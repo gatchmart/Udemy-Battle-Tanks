@@ -9,6 +9,8 @@
 class UTankBarrel;
 class UTankTurret;
 class UTankAimingComponent;
+class AProjectile;
+class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANKS_API ATank : public APawn
@@ -33,7 +35,16 @@ protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:
-	UPROPERTY(EditAnywhere, Category=Firing)
+	UPROPERTY(EditDefaultsOnly, Category=Firing)
 	float LaunchSpeed = 4000;
 
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	float ReloadTimeInSeconds = 3;
+
+	UPROPERTY(EditDefaultsOnly, Category=Setup)
+	TSubclassOf<AProjectile> Projectile = nullptr;
+
+	UTankBarrel* Barrel = nullptr;
+
+	double lastFireTime = 0;
 };

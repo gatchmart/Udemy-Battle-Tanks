@@ -17,10 +17,13 @@ class BATTLETANKS_API ATankAiController : public AAIController
 	GENERATED_BODY()
 
 private:
-
-	ATank* GetControlledTank();
-	ATank* GetPlayerTank() const;
 	virtual void BeginPlay() override;
 	void Tick(float DeltaSeconds) override;
+
+	ATank* controlledTank = nullptr;
+	ATank* playerTank = nullptr;
+
+	UPROPERTY(EditAnywhere)
+	float acceptanceRadius = 300;
 	
 };
